@@ -11,10 +11,10 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 
-
-
 db = SQLAlchemy(app)
-from models import User, Post
+
+from .models import User, Post
+#db.drop_all()
 db.create_all()
 db.session.commit()
 
@@ -22,6 +22,8 @@ db.session.commit()
 
 lm = LoginManager()
 lm.init_app(app)
+lm.login_view = 'login'
+
 oid = OpenID(app, os.path.join(basedir, 'tmp'))
 
 

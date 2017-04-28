@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>Edit Your profile </h1>
+
+	<form action = '' method = 'post' >
+		{{ form.hidden_tag() }}
+
+		<table>
+			<tr>
+				<td>Your nickname</td> 
+				<td> 
+						{{ form.nickname(size = 24) }}
+
+						{% for err in form.nickname.errors %}
+							<span style="color : red"><i>*{{err}}</i></span>
+						{% endfor %}
+				</td>
+			</tr>
+			<tr>
+				<td>About Me</td>
+				<td>{{ form.about_me(cols = 32, rows = 4) }}</td>
+			</tr>
+		</table>
+
+		<input type="submit" value="save" />
+	</form>
+
+{% endblock %}
